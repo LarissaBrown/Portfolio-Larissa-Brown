@@ -11,6 +11,31 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+	
+		<script type="text/javascript">
+			(function() {
+				// https://dashboard.emailjs.com/admin/integration
+				emailjs.init('user_oQB8bFJjV5VpevGum4IEO');
+			})();
+		</script>
+		<script type="text/javascript">
+			window.onload = function() {
+				document.getElementById('contact_form').addEventListener('submit', function(event) {
+					event.preventDefault();
+					// generate a five digit number for the contact_number variable
+					this.contact_number.value = Math.random() * 100000 | 0;
+					// these IDs from the previous steps
+					emailjs.sendForm('user_oQB8bFJjV5Vpe', 'contact_form', this)
+						.then(function() {
+							console.log('SUCCESS!');
+
+						}, function(error) {
+							console.log('FAILED...', error);
+						});
+				});
+			}
+		</script>
 	</head>
 	<body class="is-preload">
 
@@ -53,16 +78,16 @@
 							<article class="post featured">
 								<header class="major">
 									<span class="date">2020</span>
-									<h2><a href="#">Urban Harvest</a></h2>
+									<h2><a href="https://www.urban-harvest.surge.sh">Urban Harvest</a></h2>
 									<p> A React/Firebase app for owners of local fruit trees and overgrown gardens to share their bounties. 
 										Planned using Trello ensuring each User Story contained Acceptance Criteria. 
 										Wireframes were used in Figma to design the frontend UI and a Mind Map helped to plan the backend architecture.</p>
 								</header>
 								<a id="urban" href="https://www.figma.com/file/xVCvHftMFCL4KvE76PBCKc/Urban-Harvest-App?node-id=0%3A1" class="image main"><img src="images/harvest.png" alt="" /></a>
 								<h2>Mobile Prototype</h2>
-								<a id="urban" href="" class="image" ><img src="images/urbanHarvestMobile.png"alt=""/></a>
+								<a id="urban" href="https://www.figma.com/file/xVCvHftMFCL4KvE76PBCKc/Urban-Harvest-App?node-id=0%3A1" class="image" ><img src="images/urbanHarvestMobile.png"alt=""/></a>
 								<ul class="actions special">
-									<li><a href="#" class="button large">Live Link</a></li>
+									<li><a href="https://www.urban-harvest.surge.sh" class="button large">Live Link</a></li>
 								</ul>
 							</article>
 
@@ -71,27 +96,27 @@
 								<article>
 									<header>
 										<span class="date">2021</span>
-										<h2><a href="#">eLi</a><br />
+										<h2><a href="https://www.figma.com/proto/kQAikPUkqrdDc0E3Y7r57C/V-SchoolForum?scaling=scale-down&node-id=1%3A2">eLi</a><br />
 										Forum</a></h2>
 									</header>
 									<a id="eli" href="https://www.figma.com/proto/kQAikPUkqrdDc0E3Y7r57C/V-SchoolForum?scaling=scale-down&node-id=1%3A2" class="image fit"><img src="images/eLi.png" alt="" /></a>
 									<p>A React/MongoDB app for users to interact through a forum format. Users can post Topics in different Categories and others can post comments. </p>
 									<ul class="actions special">
-										<li><a href="#" class="button">Live Link</a></li>
+										<li><a href="https://www.figma.com/proto/kQAikPUkqrdDc0E3Y7r57C/V-SchoolForum?scaling=scale-down&node-id=1%3A2" class="button">Live Link</a></li>
 									</ul>
 								</article>
 								<article>
 									<header>
 										<span class="date">2021</span>
-										<h2><a href="#">Fiz<br />
+										<h2><a href="https://www.loom.com/share/f8f6740e72814fe795f1f6e0455b572f">Fiz<br />
 										Code Study App</a></h2>
 									</header>
 									<div id="fiz">
-									<a href="https://fiz.surge.sh" class="image fit"><img src="images/FIZ.png" alt="v-school logo" /></a>
+									<a href="https://www.loom.com/share/f8f6740e72814fe795f1f6e0455b572f" class="image fit"><img src="images/FIZ.png" alt="v-school logo" /></a>
 								</div>
 									<p>A React-Native/Firebase iOS App for studying concepts in Web Development and Coding.</p>
 									<ul class="actions special">
-										<li><a href="#" class="button">Live Link</a></li>
+										<li><a href="https://www.loom.com/share/f8f6740e72814fe795f1f6e0455b572f" class="button">Live Link</a></li>
 									</ul>
 								</article>
 								<!-- <article>
@@ -165,7 +190,17 @@
 				<!-- Footer -->
 					<footer id="footer">
 						<section>
-							<form method="post" action="#">
+							<form id="contact_form">
+								<input type="hidden" name="contact_number">
+								<label>Name</label>
+								<input type="text" name="user_name">
+								<label>Email</label>
+								<input type="email" name="user_email">
+								<label>Message</label>
+								<textarea id="message" name="message"></textarea>
+								<input type="submit" value="Send">
+							</form>
+							<!-- <form id="contact-form" method="post" action="submit">
 								<div class="fields">
 									<div class="field">
 										<label for="name">Name</label>
@@ -183,7 +218,7 @@
 								<ul class="actions">
 									<li><input type="submit" value="Send Message" /></li>
 								</ul>
-							</form>
+							</form> -->
 						</section>
 						<section class="split contact">
 							<section class="alt">
